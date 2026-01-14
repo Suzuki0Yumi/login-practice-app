@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>ようこそ！</h1>
+
+    <% if logged_in? %>
+       <p>ログイン中です</p>
+       <%= link_to 'ログアウト', logout_path, method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+       <p>ログインしてください</p>
+       <%= link_to 'ログイン', login_path, class: 'btn btn-primary' %>
+    <% end %>
+</div> 
