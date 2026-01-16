@@ -1,11 +1,11 @@
 <div class="container">
-    <h1>ようこそ！</h1>
+    <h1  class="welcome-title">ようこそ！</h1>
 
     <% if logged_in? %>
-       <p>ログイン中です</p>
-       <%= link_to 'ログアウト', logout_path, method: :delete, class: 'btn btn-danger' %>
+       <p class="welcome-text">ログイン中です</p>
+       <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
     <% else %>
-       <p>ログインしてください</p>
+       <p class="welcome-text">ログインしてください</p>
        <%= link_to 'ログイン', login_path, class: 'btn btn-primary' %>
     <% end %>
 </div> 
