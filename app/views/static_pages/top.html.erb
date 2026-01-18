@@ -1,11 +1,12 @@
 <div class="container">
+    <%= image_tag 'character.png', class: 'welcome-character' %>
     <h1  class="welcome-title">ようこそ！</h1>
 
     <% if logged_in? %>
        <p class="welcome-text">ログイン中です</p>
        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
     <% else %>
-       <p class="welcome-text">ログインしてください</p>
+       <p class="welcome-text">ログインボタンから始めよう</p>
        <%= link_to 'ログイン', login_path, class: 'btn btn-primary' %>
     <% end %>
 </div> 

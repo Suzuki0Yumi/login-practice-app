@@ -1,4 +1,15 @@
 /* welcome 全体 */
+.welcome-character {
+  width: 120px;
+  margin-bottom: 16px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
 .container {
   max-width: 380px;
   margin: 80px auto;
@@ -28,7 +39,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   margin-bottom: 16px;
-  color: #6b8fd6;
+  color: #E89C5C;
   animation: fadeIn 0.8s ease 0.2s both;
 }
 
@@ -42,17 +53,17 @@
 /* ボタン共通 */
 .btn {
   display: inline-block;
-  padding: 12px 22px;
+  padding: 16px 24px;
   border-radius: 9999px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 18px;
   transition: all 0.2s ease;
 }
 
 /* ログイン */
 .btn-primary {
-  background-color: #6b8fd6;
-  color: #fff;
+  background-color: #f8b63c;
+  color: #ffffff;
   box-shadow: 0 4px 10px rgba(107, 143, 214, 0.35);
 }
 

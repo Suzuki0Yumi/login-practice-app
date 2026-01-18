@@ -1,0 +1,69 @@
+// スマホ対応
+@media (max-width: 768px) {
+  // ハンバーガーメニューを表示
+  .hamburger {
+    display: flex;
+  }
+  
+  // ナビゲーションメニュー(スマホ表示)
+  .nav-menu {
+    display: none;  // 最初は非表示
+    position: absolute;
+    top: 60px;  // ヘッダーの高さに合わせて調整
+    right: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    
+    ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li {
+      width: 100%;
+      list-style: none;
+      border-bottom: 1px solid #e9ecef;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    a {
+      display: block;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
+  
+  // メニューが開いている時
+  .nav-menu.show {
+    display: block;
+  }
+  
+  // ログインボタン(スマホ表示用)
+  .nav-menu .login-btn {
+    background-color: transparent;
+    color: #d2954b !important;
+    font-weight: 600;
+    border-radius: 0;
+    padding: 1rem 1.5rem;
+    
+    &:hover {
+      background-color: #f8f9fa;
+      color: #b58722 !important;
+    }
+  }
+}
