@@ -1,0 +1,97 @@
+/* welcome 全体 */
+.welcome-character {
+  width: 120px;
+  margin-bottom: 16px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.container {
+  max-width: 380px;
+  margin: 80px auto;
+  padding: 32px;
+
+  background: #fff;
+  border-radius: 12px;
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.8s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* タイトル */
+.welcome-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  color: #E89C5C;
+  animation: fadeIn 0.8s ease 0.2s both;
+}
+
+/* テキスト */
+.welcome-text {
+  font-size: 14px;
+  margin-bottom: 24px;
+  color: #555;
+}
+
+/* ボタン共通 */
+.btn {
+  display: inline-block;
+  padding: 16px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+/* ログイン */
+.btn-primary {
+  background-color: #f8b63c;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(107, 143, 214, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(107, 143, 214, 0.45);
+}
+
+/* ログアウト */
+.btn-danger {
+  background-color: #e26d6d;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(226, 109, 109, 0.35);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(226, 109, 109, 0.45);
+}
+
+/* ホバー時 */
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(44, 88, 154, 0.45);
+}
+
+/* クリック時 */
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(44, 88, 154, 0.3);
+}

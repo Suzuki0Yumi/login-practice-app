@@ -1,0 +1,21 @@
+<header>
+  <%= link_to root_path do %>
+     <%= image_tag 'logo.png' %>
+  <% end %>
+
+  <button class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+ <nav class="nav-menu" id="navMenu"> 
+   <ul>
+     <li>
+         <%= link_to 'ログイン', login_path, class: "login-btn" %>
+     </li>
+   </ul>
+ </div>
+</nav>
+
+</header>
