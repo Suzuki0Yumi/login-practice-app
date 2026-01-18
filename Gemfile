@@ -60,3 +60,7 @@ end
 
 gem "sassc-rails"
 gem "dartsass-rails"
+
+group :test do
+  gem "minitest", "~> 5.25"
+end
