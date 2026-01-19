@@ -1,0 +1,39 @@
+<h1>学習記録</h1>
+
+<div class='streak-badge'>
+   🔥 連続学習記録: <%= current_user.current_streak %>日
+</div>
+
+  <%= link_to '学習記録を作成する', new_study_record_path, class: 'btn btn-primary' %>
+</div>
+
+<% if @study_records.present? %>
+  <table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>学習日</th>
+            <th>学習時間</th>
+            <th>ひとことメモ</th>
+            <th>がんばり度</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @study_records.each do |record| %>
+        <tr>
+             <td><%= record.study_date.strftime("%Y/%m/%d") %></td>
+             <td><%= record.formatted_study_time %></td>
+             <td><%= record.content%></td>
+             <td><%= "⭐" * record.concentration_level if record.concentration_level %></td>
+             <td>
+                <%= link_to '詳細', study_record_path(record), class: 'btn btn-info' %>
+                <%= link_to '編集', edit_study_record_path(record), class: 'btn btn-warning' %>
+                <%= link_to '削除', study_record_path(record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-danger' %>
+             </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>学習記録がありません</p>
+<% end %>

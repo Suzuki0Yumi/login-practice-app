@@ -1,0 +1,51 @@
+.concentration-meter {
+  margin-top: 10px;
+}
+
+.concentration-slider {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #9ad0ff, #ffd59a, #ff9aa2);
+  outline: none;
+}
+
+.concentration-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #ff9aa2;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.concentration-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.concentration-badge {
+  background: #ff9aa2;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+/* 空のセルに薄いグレーの背景をつける */
+td:empty {
+  background-color: #f8f9fa;
+}
+
+/* または、空のセルに薄い斜線を入れる */
+td:empty::after {
+  content: "—";
+  color: #ccc;
+}

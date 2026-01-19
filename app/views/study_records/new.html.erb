@@ -1,0 +1,66 @@
+<h1>学習記録の作成</h1>
+
+<%= form_with(model: @study_record, local: true) do |f| %>
+    <% if @study_record.errors.any? %>
+        <div class= 'error_messages'>
+         <h2><%= pluralize(@study_record.errors.count, 'error') %>件のエラーがあります</h2>
+            <ul>
+                <% @study_record.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class='form-group'>
+        <%= f.label :study_date, '学習日' %>
+        <%= f.date_field :study_date, class: 'form-control', value: Date.today, max: Date.today %>
+    </div>
+
+    <div class= 'form-group'>
+        <%= f.label :study_time, '学習時間' %>
+        <div class= 'datepicker'>
+          <%= f.number_field :study_hours, class: 'form-control', min: 1, max:24, placeholder: '0' %>
+          <span>時間</span>
+          <%= f.number_field :study_minutes, class: 'form-control', min:0, max:59, placeholder: '0' %>
+          <span>分</span>
+        </div>
+    </div>
+
+    <div class= 'form-group'>
+        <%= f.label :content, 'ひとことメモ' %>
+        <%= f.text_area :content, class: 'form-control', maxlength: 100, placeholder: '100文字以内で入力できます' %>
+    </div>
+
+    <div class= 'form-group'>
+        <%= f.label :concentration_level, '今日のがんばり度' %>
+        <div class='concentration-meter'>
+          <input type='range' 
+              name='study_record[concentration_level]' 
+              min='1' 
+              max='5' 
+             value='3'
+              class='form-range'
+              id='concentrationRange'>
+        <div class='d-flex justify-content-between'>
+          <span>😴 低い</span>
+          <span id='concentrationValue'>3</span>
+          <span>🔥 高い</span>
+        </div>
+        </div>
+    </div>
+
+    <script>
+      const range = document.getElementById('concentrationRange');
+      const value = document.getElementById('concentrationValue');
+  
+      range.addEventListener('input', function() {
+       value.textContent = this.value;
+     });
+    </script>
+
+    <div class ='actions'>
+        <%= f.submit '保存', class: 'btn btn-primary' %>
+        <%= link_to '戻る', study_records_path, class: 'btn btn-secondary' %>
+    </div>
+<% end %>
