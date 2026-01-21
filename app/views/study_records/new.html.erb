@@ -1,7 +1,13 @@
-<h1>学習記録の作成</h1>
+<div class="study-records-new">
+  <h1 class='title'>学習記録の作成</h1>
 
-<%= form_with(model: @study_record, local: true) do |f| %>
-    <% if @study_record.errors.any? %>
+   <div class="character-image">
+      <%= image_tag "character-pen.png", alt: "キャラクター", class: "cute-character" %>
+   </div>
+
+ <div class="form-container">
+   <%= form_with(model: @study_record, local: true) do |f| %>
+      <% if @study_record.errors.any? %>
         <div class= 'error_messages'>
          <h2><%= pluralize(@study_record.errors.count, 'error') %>件のエラーがあります</h2>
             <ul>
@@ -63,4 +69,6 @@
         <%= f.submit '保存', class: 'btn btn-primary' %>
         <%= link_to '戻る', study_records_path, class: 'btn btn-secondary' %>
     </div>
-<% end %>
+  <% end %>
+ </div>
+</div>

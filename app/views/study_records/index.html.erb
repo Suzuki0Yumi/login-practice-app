@@ -1,13 +1,17 @@
-<h1>学習記録</h1>
+<div class="study-records-page">
+ <h1 class='title'>学習記録</h1>
 
-<div class='streak-badge'>
+   <div class="character-image">
+      <%= image_tag "character-win.png", alt: "キャラクター", class: "cute-character" %>
+   </div>
+ <div class='study-records-index'>
    🔥 連続学習記録: <%= current_user.current_streak %>日
-</div>
+ </div>
 
   <%= link_to '学習記録を作成する', new_study_record_path, class: 'btn btn-primary' %>
-</div>
 
-<% if @study_records.present? %>
+
+ <% if @study_records.present? %>
   <table class='table table-striped'>
     <thead>
         <tr>
@@ -34,6 +38,7 @@
       <% end %>
     </tbody>
   </table>
-<% else %>
+ <% else %>
   <p>学習記録がありません</p>
-<% end %>
+ <% end %>
+</div>

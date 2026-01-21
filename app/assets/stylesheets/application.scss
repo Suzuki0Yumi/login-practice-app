@@ -1,6 +1,6 @@
-// SCSS形式でCSSファイルをインポート
-@import 'header';
-@import 'before_login_header';
-@import 'top';
-@import 'user_sessions';
-@import "users";
+@use "header";
+@use "before_login_header";
+@use "top";
+@use "user_sessions";
+@use "users";
+@use "study_records";
