@@ -18,6 +18,10 @@ class StudyRecordsController < ApplicationController
         @study_records = current_user.study_records.order(study_date: :desc)
     end
 
+    def list
+        @study_records_by_date = current_user.study_records.order(study_date: :desc).group_by(&:study_date)
+    end
+
     private
 
     def study_record_params

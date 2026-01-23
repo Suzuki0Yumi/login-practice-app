@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root "static_pages#top"
   resources :users, only: [ :new, :create ]
-
+  resources :study_records do
+    collection do
+      get :list
+    end
+  end
   get "login", to: "user_sessions#new"
   post "login", to: "user_sessions#create"
   delete "logout", to: "user_sessions#destroy"
   resources :study_records
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -19,4 +23,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
 end

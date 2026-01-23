@@ -12,6 +12,18 @@
  <nav class="nav-menu" id="navMenu"> 
   <ul>
     <li>
+        <%= link_to '記録する', new_study_record_path, class: 'nav-create' %>
+    </li>
+    <li>
+        <%= link_to 'カレンダー', study_records_path, class: 'nav-calendar' %>
+    </li>
+    <li>
+        <%= link_to '一覧', list_study_records_path, class: 'nav-list'%>
+    </li>
+    
+    <li class ='divider'></li>
+    
+    <li>
        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "logout-btn" %>
     </li>
   </ul>
