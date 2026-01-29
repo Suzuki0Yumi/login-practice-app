@@ -15,7 +15,11 @@ class StudyRecordsController < ApplicationController
     end
 
     def index
-      @study_records = current_user.study_records.order(study_date: :desc)
+      @date = params[:month] ? Date.strptime(params[:month], "%Y-%m") : Date.today
+
+      @study_records = current_user.study_records
+      .where(study_date: @date.beginning_of_month..@date.end_of_month)
+      .group_by(&:study_date)
     end
 
     def list
