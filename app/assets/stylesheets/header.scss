@@ -7,11 +7,12 @@ header {
   background-color: #f3bb59;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 /* ロゴ画像 */
 header img {
-  width: 110px;
+  width: 130px;
   height: auto;
   display: block;
   transition: opacity 0.3s ease;
@@ -45,7 +46,7 @@ header img:hover {
 .nav-menu ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 8px 20px;
   display: flex;
   gap: 16px;
 }
@@ -69,6 +70,8 @@ header img:hover {
   box-shadow: 0 6px 14px rgba(232, 156, 92, 0.5);
 }
 
+
+
 /* ログアウトボタン */
 .logout-btn {
   background: transparent;
@@ -87,6 +90,52 @@ header img:hover {
   color: white !important;
 }
 
+
+.nav-menu a {
+  color: #333;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+/* 記録する */
+.nav-create {
+  background: linear-gradient(135deg, #f29b63, #ed8c4f);
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(237, 140, 79, 0.45);
+}
+
+
+/* カレンダー */
+.nav-calendar {
+  background: #fff1e8;
+  color: #ed8c4f !important;
+  border: 1.5px solid #f3c1a1;
+}
+
+/* 一覧 */
+.nav-list {
+  background: #f7f7f7;
+  color: #666 !important;
+}
+
+.nav-list:hover {
+  background: #efd6c6;
+  color: #ed8c4f !important;
+}
+
+.nav-menu a:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.95);
+}
+
+
+
+
+
+
 /* スマホ対応 */
 @media (max-width: 768px) {
   /* ハンバーガーメニューを表示 */
@@ -99,13 +148,26 @@ header img:hover {
     display: none;
     position: absolute;
     top: 60px;
-    right: 20px;
+    right: 8px;
+    width: 12px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 16px;
+    width: 260px;
+    box-sizing: border-box;
   }
 
+.nav-menu a:hover {
+  color: #E89C5C;
+  padding: 10px 16px;
+}
+
+nav-menu,
+  .nav-menu * {
+    box-sizing: border-box;
+  }
+  
   /* メニューが開いている時 */
   .nav-menu.show {
     display: block;
@@ -114,6 +176,7 @@ header img:hover {
   .nav-menu ul {
     flex-direction: column;
     gap: 12px;
+     width: 100%;
   }
 
   .login-btn,

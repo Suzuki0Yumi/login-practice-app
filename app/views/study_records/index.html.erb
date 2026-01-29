@@ -1,0 +1,14 @@
+<div class="study-records-page">
+ <h1 class='title'>学習記録</h1>
+
+   <div class="character-image">
+      <%= image_tag "character-calender", alt: "キャラクター", class: "cute-character" %>
+   </div>
+ <div class='study-records-index'>
+   🔥 連続学習記録: <%= current_user.current_streak %>日
+ </div>
+
+  <%= link_to '学習記録を作成する', new_study_record_path, class: 'btn btn-primary' %>
+
+
+ 

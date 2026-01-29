@@ -1,0 +1,45 @@
+<div id="<%= dom_id(study_record) %>" class="record-item">
+
+  <!-- 編集・削除ボタン -->
+  <div class="record-actions">
+    <button
+      type="button"
+      class="list-btn btn-edit"
+      onclick="toggleInlineEdit(this)">
+      編集
+    </button>
+
+    <%= link_to '削除',
+      study_record_path(study_record),
+      data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+      class: "list-btn btn-delete" %>
+  </div>
+
+  <!-- インライン編集フォーム -->
+  <div class="inline-edit-form" style="display:none;">
+    <%= form_with model: study_record do |f| %>
+
+      <div class="edit-fields">
+        <%= f.text_field :content, placeholder: "ひとことメモ" %>
+      </div>
+
+      <div class="edit-time">
+        <%= f.number_field :study_hours,
+              value: study_record.study_time / 60,
+              min: 0 %>時
+        <%= f.number_field :study_minutes,
+              value: study_record.study_time % 60,
+              min: 0, max: 59 %>分
+      </div>
+
+      <div class="edit-actions">
+        <%= f.button "保存", class: "inline-edit-save-btn" %>
+        <button type="button" class="inline-edit-cancel-btn">
+          キャンセル
+        </button>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>
