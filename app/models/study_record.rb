@@ -25,6 +25,14 @@ class StudyRecord < ApplicationRecord
         end
     end
 
+    def set_virtual_time
+      return if study_time.nil?
+
+      self.study_hours = study_time / 60
+      self.study_minutes = study_time % 60
+    end
+
+
     private
 
     def convert_time_to_minutes

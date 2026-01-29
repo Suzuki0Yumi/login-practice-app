@@ -1,72 +1,59 @@
 <div class="study-records-page">
- <h1 class="title">学習記録一覧</h1>
-   
-   <div class="character-image">
-      <%= image_tag "character-win.png", alt: "キャラクター", class: "cute-character" %>
-   </div>
+  <h1 class="title">学習記録一覧</h1>
 
- <% if @study_records_by_date.present? %>
-  <% @study_records_by_date.each do |date, records| %>
+  <div class="character-image">
+    <%= image_tag "character-win.png", alt: "キャラクター", class: "cute-character" %>
+  </div>
 
-  <% total_minutes = records.sum(&:study_time) %>
+  <% if @study_records_by_date.present? %>
+    <% @study_records_by_date.each do |date, records| %>
 
-  <div class="daily-record">
-    <div class="daily-header">
+      <% total_minutes = records.sum(&:study_time) %>
 
-        <h3><%= date.strftime('%Y/%m/%d') %></h3>
-        <span class="daily-total">
-           合計 <%= total_minutes / 60 %>時間<%= total_minutes % 60 %>分
-        </span>
-        <button class="btn-toggle-actions" onclick="toggleActions(this)">編集・削除</button>
-    </div>
+      <div class="daily-record">
+        <div class="daily-header">
+          <%= image_tag "apple.png", class: "date-icon", alt: "りんご" %>
+          <h3><%= date.strftime('%Y/%m/%d') %></h3>
 
-  <div class="records-actions-wrapper" style="display: none;">
-      <% records.each do |record| %>
-      <div class="record-actions">
-        <button class='list-btn btn-edit' data-record-id='<%= record.id %>'>
-          編集
-        </button>
-        <%= link_to '削除', study_record_path(record), 
-          method: :delete, 
-          data: { confirm: "削除しますか?" }, 
-         class: "list-btn btn-delete" %>
+          <span class="daily-total">
+            合計 <%= total_minutes / 60 %>時間<%= total_minutes % 60 %>分
+          </span>
+
+          <button class="btn-toggle-actions" onclick="toggleActions(this)">
+            編集・削除
+          </button>
+        </div>
+
+        <!-- ▼ 編集・削除ゾーン -->
+        <div class="records-actions-wrapper" style="display:none;">
+          <% records.each do |record| %>
+            <%= render "study_records/record", study_record: record %>
+          <% end %>
+        </div>
+
+        <!-- ▼ 表示用テーブル -->
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>学習時間</th>
+              <th>ひとことメモ</th>
+              <th>がんばり度</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% records.each do |record| %>
+              <tr>
+                <td><%= record.formatted_study_time %></td>
+                <td><%= record.content.presence || '—' %></td>
+                <td><%= '⭐' * record.concentration_level %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
       </div>
-      <% end %>
-  </div>
-
-    <table class="records-table">
-      <thead>
-        <tr>  
-          <th>学習時間</th>
-          <th>ひとことメモ</th>
-          <th>がんばり度</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% records.each do |record| %>
-          <tr>
-            <td><%= record.formatted_study_time %></td>
-            <td><%= record.content.presence || '—' %></td>
-            <td><%= '⭐' * record.concentration_level %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-  <% end %>
- <% else %>
-  <p>学習記録がありません</p>
- <% end %>
-</div>
-
-<!-- モーダル -->
-<div id="edit-modal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <%= form_with(model: @study_record || StudyRecord.new, local: true, id: "modal-form") do |f| %>
-      <%= f.text_field :content, placeholder: "ひとことメモ" %>
-      <%= f.number_field :study_time %>
-      <%= f.submit "保存", class: "btn btn-primary" %>
     <% end %>
-  </div>
+  <% else %>
+    <p>学習記録がありません</p>
+  <% end %>
 </div>

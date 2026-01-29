@@ -253,31 +253,78 @@ td:empty::after {
   }
 }
 /* ===== 日付ごとのブロック ===== */
+
+.daily-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-icon {
+  width: 60px;
+  height: 60px;
+}
+
+
 .daily-record {
-   background: #fff;
+  background: #fff;
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+
+  border: 1px solid #f0f0f0;
 }
 
 .daily-header {
-  position: relative;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  margin-bottom: 8px;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+   border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.daily-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #f0b954;
+
 }
 
 .daily-header h3 {
-  margin: 0;
-  font-size: 18px;
+  font-size: 2.0rem;
+  font-weight: 700;
   color: #E89C5C;
+  text-align: center;
+}
+
+.daily-total {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ff6f91;
+  background: #f8e6ea;
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  justify-self: end; 
+  width: fit-content;
+}
+
+.daily-total::before {
+  content: "⏱";
+  font-size: 0.95rem;
 }
 
 .daily-header .daily-total {
-  position: absolute;
-  right: 0; 
   font-size: 1.05rem;
   font-weight: 600;
   color: #ff6f91;
@@ -287,30 +334,24 @@ td:empty::after {
   transition: transform 0.2s ease;
 }
 
-.daily-header:hover{
-  transform: scale(1.05);
-}
 
 /* ===== トグルボタン ===== */
 .btn-toggle-actions {
-  position: absolute ;
-  left: 0;
+  position: static;
   background-color: #E89C5C;
   color: #fff;
   border: none;
   border-radius: 9999px;
-  padding: 6px 16px;
-  font-size: 0.9rem;
+  padding: 6px 14px;
+  font-size: 0.85rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 3px 8px rgba(255, 111, 145, 0.3);
 }
 
 .btn-toggle-actions:hover {
   background-color: #d88a4a;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 /* ===== アクションボタンのラッパー ===== */
@@ -320,24 +361,27 @@ td:empty::after {
 
 .record-actions {
   display: flex;
+  justify-content: space-between;
   gap: 8px;
-  justify-content: center;
-  padding: 8px 0;
   background-color: #f8f9fa;
   border-radius: 8px;
+  max-width: 180px;
+  margin: 0 auto;
+  padding: 4px;
 }
 
 /* ===== 編集・削除ボタン ===== */
 .list-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  flex: 1; 
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+  text-align: center;
   color: #fff;
   text-decoration: none;
   transition: all 0.2s;
   cursor: pointer;
   border: none;
-  display: inline-block;
 }
 
 .list-btn.btn-edit {
@@ -362,3 +406,129 @@ td.record-actions {
   background-color: #f5f5f5;
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+
+/* ===== インライン編集フォーム全体 ===== */
+.inline-edit-form {
+  display: none;
+}
+
+.inline-edit-form form {
+  background: #FFF1D6;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(220, 216, 216, 0.08);
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 450px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ひとことメモ入力欄 */
+.inline-edit-form .edit-fields input[type="text"] {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #fbf8f8;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* 〇時〇分入力 */
+.inline-edit-form .edit-time {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inline-edit-form .edit-time input[type="number"] {
+  width: 60px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #fbf8f8;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* アクションボタンラッパー */
+.inline-edit-form .edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* 保存ボタン */
+.inline-edit-save-btn {
+  background: #f8b63c;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.inline-edit-save-btn:hover {
+  background: #e3e9af;
+  transform: translateY(-1px);
+}
+
+/* キャンセルボタン */
+.inline-edit-cancel-btn {
+  background: #ccc;
+  color: #333;
+  border-radius: 8px;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.inline-edit-cancel-btn:hover {
+  background: #bbb;
+  transform: translateY(-1px);
+}
+
+/* 編集・削除ボタン（横並びで小さめ） */
+.record-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.record-actions .list-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+}
