@@ -10,5 +10,62 @@
 
   <%= link_to '学習記録を作成する', new_study_record_path, class: 'btn btn-primary' %>
 
+<div class='calendar'>
+  <h2>
+     <%= link_to "← ", study_records_path(month: @date.prev_month.strftime("%Y-%m")), class: "calendar-nav-link" %>
+     <%= @date.strftime("%Y年%m月") %>
+     <%= link_to " →", study_records_path(month: @date.next_month.strftime("%Y-%m")), class: "calendar-nav-link" %>
+  </h2>
 
- 
+  <table class='calendar-table'>
+    <thead>
+      <tr>
+        <th>日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+      </tr>
+    </thead>
+
+    <tbody>
+       <tr>
+         <% start_wday = @date.beginning_of_month.wday %>
+
+         <% start_wday.times do %>
+            <td></td>
+         <% end %>
+
+          <% (@date.beginning_of_month..@date.end_of_month).each do |day| %>
+            <td class="<%= 'today' if day == Date.today %>">
+               <div class="day-number"><%= day.day %></div>
+
+              <% if @study_records[day] %>
+                 <% total_minutes = @study_records[day].sum(&:study_time) %>
+                 <% total_hours = (total_minutes / 60.0).round(1) %>
+                 
+                 <div class='study-time'>
+                   <span class="study-hours"><%= total_hours %></span>
+                   <span class="study-unit">h</span>
+                 </div>
+
+                 <% concentration_avg = 
+                      @study_records[day].sum(&:concentration_level).to_f / @study_records[day].size %>
+                
+                <div class='concentration-level'>
+                    <%= '⭐' * concentration_avg.round(1) %>
+                </div>
+              <% end %>
+            </td>
+
+            <% if day.wday == 6 %>
+              </tr><tr>
+            <% end %>
+          <% end %>
+        </tr>           
+    </tbody>
+  </table>
+</div>
+
