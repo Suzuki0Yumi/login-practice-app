@@ -156,7 +156,8 @@ GEM
     marcel (1.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.1)
+      prism (~> 1.5)
     msgpack (1.8.0)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
@@ -362,7 +363,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  minitest (~> 5.25)
+  minitest (~> 6.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.3)
