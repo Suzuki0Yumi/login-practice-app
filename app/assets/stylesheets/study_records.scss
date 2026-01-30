@@ -546,12 +546,12 @@ td.record-actions {
 }
 
 .calendar-table th, .calendar-table td {
-  width: 14.28%; /* 7列で割る */
-  height: 80px;
+  width: 14.28%;
+  height: 100px;
   border: 2.5px solid #e9d69f;
   vertical-align: top;
   text-align: left;
-  padding: 4px;
+  padding: 10px 8px; 
 }
 
 .calendar-table th {
@@ -567,9 +567,10 @@ td.record-actions {
 .calendar-table td {
   background: #fffdf8;
   border-radius: 14px;
-  padding: 8px 4px;
+  padding: 8px;
   vertical-align: top;
-  min-height: 70px;
+  min-height: 80px;
+  position: relative;
 }
 
 
@@ -634,23 +635,15 @@ td.record-actions {
 
 .study-time {
   display: inline-flex;
-  align-items: center;
-  gap: 4px;
-
-  max-width: 100%;
-  white-space: normal;
-  word-break: break-word;
-
+  align-items: baseline;
+  gap: 2px;
   background: #e4f2f0;
   color: #e6ac85;
   font-weight: 600;
-  font-size: 0.8rem;
-
-  padding: 4px 8px;
+  font-size: 0.75rem;
+  padding: 3px 6px;
   border-radius: 999px;
-  margin: 6px auto 0;
-
-  box-shadow: 0 3px 8px rgba(216, 76, 127, 0.25);
+  box-shadow: 0 2px 4px rgba(216, 76, 127, 0.15);
 }
 
 
@@ -662,36 +655,37 @@ td.record-actions {
   margin-right: 2px;
 }
 
+
 .study-hours {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 0.9rem;
+  font-weight: 700;
   color: #f3bb59;
 }
 
 .study-unit {
-  font-size: 0.7rem;
-  opacity: 0.6;
+  font-size: 0.65rem;
+  opacity: 0.7;
 }
-
 
 .concentration-level {
-  font-size: 0.6rem;
-  margin-top: 4px;
-  margin-left: 12px;
+  font-size: 0.7rem;
   color: #f4b400;
-  opacity: 0.8;
+  margin-left: 4px;
 }
-
 
 .day-number {
-  background: transparent;
-  color: #999;
-  font-size: 0.7rem;
-  padding: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 8px;
 }
 
-
-
+.study-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
 
 
 
